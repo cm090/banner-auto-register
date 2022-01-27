@@ -1,7 +1,9 @@
 # Banner Auto Register (BAR)
-#### Disclaimer: BAR created solely for testing purposes. If you are prohibited from using software to automatically register for courses, do not use this program. I am not responsible for anything that goes wrong.
+#### Disclaimer: BAR created solely for testing purposes. If you are prohibited from using software to automatically register for courses, do not use this program. BAR is not associated with Ellucian Banner. I am not responsible for anything that goes wrong.
 
 ### Automatically register for your next semester's classes with this tool!
+![example workflow](https://github.com/cm090/banner-auto-register/actions/workflows/codeql-analysis.yml/badge.svg)
+
 BAR accomplishes a few tasks so human error doesn't slow down the registration process:
 - Takes in a PIN that is autofilled when prompted by the site
 - Refreshes the waiting screen at random intervals between 1 and 10 seconds
@@ -35,6 +37,7 @@ If you need help, check out this video (coming soon)
 6. Click the green save button and you're finished. 3-5 minutes before your registration time, visit the PIN entry page and BAR will do the rest
 
 ## Notes and Recommendations
+- Your success with BAR may vary. Version 8 of program was tested in early 2022 with a high success rate
 - Make sure BAR is working **before** registration. Do this by visiting the PIN entry page. You won't be able to register, but BAR is working if the page randomly refreshes while you're on it
 - You can check the developer console for messages or errors. Press the keys `Ctrl` + `Shift` + `I` or `F12` to open the tool and click on the console tab. Messages from BAR should appear when the program is running
 - Have a backup method just in case something goes wrong. I recommend using <a href="https://autohotkey.com" target="_blank">AutoHotKey</a>
