@@ -28,7 +28,7 @@ if(hour < 0 || hour > 11 || minute < 0 || minute > 59) {alert("(BARv8) The time 
 var url = window.location.pathname;
 if (url.includes('P_AltPin') || url.includes('P_CheckAltPin') || url.includes('P_Regs')) {
     if (document.querySelector('#apin_id') !== null) {
-        console.log('trying pin...');
+        console.log('BAR > Trying pin...');
         document.querySelector("#apin_id").value = pin;
         document.querySelector("body > div.pagebodydiv > form > input[type=submit]").click();
     } else {
