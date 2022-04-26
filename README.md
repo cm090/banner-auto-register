@@ -44,6 +44,7 @@ If you need help, check out this video (coming soon)
 - Double-check everything you enter into BAR. The program doesn't pay attention to formatting until it finds an error during registration
 - Make sure cookies are enabled on your browser. If you haven't disabled them, then you should have nothing to worry about
 - Do not start BAR more than 5 minutes before your registration time, or you risk being temporarily restricted from the Banner server
+- Follow [this guide](https://github.com/cm090/banner-auto-register/blob/main/remove-cookies.md) if you need to remove the completedRegistration cookie from your browser
 
 #### Reminder: I am not liable for anything that happens to you while using BAR
 
