@@ -1,4 +1,4 @@
-# Remove the completedCookie from your browser
+# Remove the completedRegitration cookie from your browser
 
 Follow the screenshots below
 
