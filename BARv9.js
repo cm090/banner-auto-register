@@ -5,21 +5,13 @@
 //               steps at https://link.canon.click/bar-tool
 // -------------------------------------------------------------------------------------
 
-// -------------------------------------------------------------------------------------
-// IMPORTANT: As of 4/26/22, this script is not complete. Please check this page later
-//            for a working solution.
-//            BY DOWNLOADING THIS VERSION, YOU UNDERSTAND THAT BARv9 WILL NOT WORK
-// TODO: Line 72
-   alert("(BARv9) This version of BARv9 is not complete and will not work.");
-// -------------------------------------------------------------------------------------
-
 // The boolean below disables BARv9 when set to true. You'll receive a notification
 // when disabled, just in case you forget to change the setting back
 const disableAllScripts = false;
 // In the array below, enter all of your CRNs separated by commas
 const classes = [0, 0, 0, 0];
 // Enter your registration PIN below. This information doesn't leave your device
-const pin = 111111;
+const pin = 000000;
 // Fill out your registration time below. Set the third value to true only if your
 // registration begins after 11:59 AM
 const hour = 7; // Number between 0 and 11 (0 = 12 AM)
@@ -38,7 +30,7 @@ var url = window.location.pathname;
 console.log("BARv9 > Got current url as " + url);
 if (!disableAllScripts) {
     if (url.includes('StudentRegistrationSsb/ssb/registration') && !cookieCheck('completedRegistration')) {
-        console.log("BARv9 > Found registration homepage, requesting user action")
+        console.log("BARv9 > Found registration homepage, requesting user action");
         if (cookieCheck('completedRegistration')) {
             var action = confirm("(BARv9) The registration cookie has been detected on your device, and this tool will not work unless it is removed. Click 'OK' to learn how to remove the cookie.");
             if (action) {
@@ -49,28 +41,20 @@ if (!disableAllScripts) {
         }
     } else if (url.includes('StudentRegistrationSsb/ssb/term/termSelection')) {
         console.log("BARv9 > Found PIN page, requesting user action");
-        var ev = new MouseEvent('mousedown', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': true
-        });
-        if (document.querySelector("#select2-chosen-1").textContent.length < 1) {
-            document.querySelector("#s2id_txt_term > a").dispatchEvent(ev);
-            alert("(BARv9) Please select your registration term from the dropdown menu.");
-            var waiting = true;
-            while (waiting) {
-                setTimeout(function () {
-                    if (document.querySelector("#select2-chosen-1").textContent.length > 0) {
-                        waiting = false;
-                    }
-                }, 1000);
-            }
-        }
-        console.log("BARv9 > Found term " + document.querySelector("#select2-chosen-1").textContent + ", autofilling PIN");
         document.querySelector("#input_alt_pin").value = pin;
-        document.querySelector("#term-go").click();
-    } else if (url.includes('path/to/waiting-page')) { // TODO: Get URL of waiting page
-        console.log("BARv9 > Found waiting page, refreshing in less than 10 seconds");
+        if (document.querySelector(".select2-chosen").textContent.includes("Select a term...")) {
+            var ev = new MouseEvent('mousedown', {
+                'view': window,
+                'bubbles': true,
+                'cancelable': true
+            });
+            document.querySelector("#s2id_txt_term > a").dispatchEvent(ev);
+            alert("(BARv9) Please select your registration term from the dropdown menu and press Continue when finished.");
+        }
+        else {
+            console.log("BARv9 > Found term " + document.querySelector("#select2-chosen-1").textContent + ", autofilling PIN");
+            document.querySelector("#term-go").click();
+        }
         timeTrack();
     } else if (url.includes('StudentRegistrationSsb/ssb/classRegistration/classRegistration')) {
         if (!cookieCheck('completedRegistration')) {
@@ -93,7 +77,8 @@ if (!disableAllScripts) {
 }
 
 function timeTrack() {
-    timeDiff = 0;
+    clearErrors();
+    var timeDiff = 0;
     if (isPM) {
         timeDiff = 12;
     }
@@ -103,17 +88,36 @@ function timeTrack() {
     if (timeUntil < 0) {
         console.log('registration time, loading the next page...');
         setTimeout(function () {
-            location.reload();
+            refresh();
+            clearErrors();
         }, 1000);
     }
     if (timeUntil > 10000) {
         setTimeout(function () {
-            location.reload();
+            refresh();
+            clearErrors();
         }, Math.floor(Math.random() * 10000));
     }
     setTimeout(function () {
-        location.reload();
+        refresh();
+        clearErrors();
     }, timeUntil);
+}
+
+function clearErrors() {
+    console.log("BARv9 > Found waiting page, refreshing in less than 10 seconds");
+    try {
+        if (document.querySelector("#notification-center > div > ul.error-container > li:nth-child(1) > div.notification-item-prompts > button") !== null) {
+            document.querySelector("#notification-center > div > ul.error-container > li:nth-child(1) > div.notification-item-prompts > button").click();
+            document.querySelector("#notification-center > a > div > span").click();
+            document.querySelector("#notification-center > div > ul.error-container > li > div.notification-item-prompts > button").click();
+        }
+    } catch (e) { }
+}
+
+function refresh() {
+    document.querySelector("#term-go").click();
+    timeTrack();
 }
 
 function cookieCheck(search) {
