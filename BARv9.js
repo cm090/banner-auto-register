@@ -5,13 +5,21 @@
 //               steps at https://link.canon.click/bar-tool
 // -------------------------------------------------------------------------------------
 
+// -------------------------------------------------------------------------------------
+// IMPORTANT: As of 4/26/22, this script is not complete. Please check this page later
+//            for a working solution.
+//            BY DOWNLOADING THIS VERSION, YOU UNDERSTAND THAT BARv9 WILL NOT WORK
+// TODO: Line 72
+// alert("(BARv9) This version of BARv9 is not complete and will not work.");
+// -------------------------------------------------------------------------------------
+
 // The boolean below disables BARv9 when set to true. You'll receive a notification
 // when disabled, just in case you forget to change the setting back
 const disableAllScripts = false;
 // In the array below, enter all of your CRNs separated by commas
 const classes = [0, 0, 0, 0];
 // Enter your registration PIN below. This information doesn't leave your device
-const pin = 000000;
+const pin = 000000;;
 // Fill out your registration time below. Set the third value to true only if your
 // registration begins after 11:59 AM
 const hour = 7; // Number between 0 and 11 (0 = 12 AM)
@@ -87,25 +95,22 @@ function timeTrack() {
     console.log(timeUntil);
     if (timeUntil < 0) {
         console.log('registration time, loading the next page...');
-        setTimeout(function () {
-            refresh();
-            clearErrors();
-        }, 1000);
+        document.querySelector("#term-go").click();
     }
-    if (timeUntil > 10000) {
+    else if (timeUntil > 10000) {
+        console.log("BARv9 > Found waiting page, refreshing in less than 10 seconds");
         setTimeout(function () {
             refresh();
             clearErrors();
         }, Math.floor(Math.random() * 10000));
     }
-    setTimeout(function () {
+    else setTimeout(function () {
         refresh();
         clearErrors();
     }, timeUntil);
 }
 
 function clearErrors() {
-    console.log("BARv9 > Found waiting page, refreshing in less than 10 seconds");
     try {
         if (document.querySelector("#notification-center > div > ul.error-container > li:nth-child(1) > div.notification-item-prompts > button") !== null) {
             document.querySelector("#notification-center > div > ul.error-container > li:nth-child(1) > div.notification-item-prompts > button").click();
