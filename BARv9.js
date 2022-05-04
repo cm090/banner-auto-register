@@ -5,14 +5,6 @@
 //               steps at https://link.canon.click/bar-tool
 // -------------------------------------------------------------------------------------
 
-// -------------------------------------------------------------------------------------
-// IMPORTANT: As of 4/26/22, this script is not complete. Please check this page later
-//            for a working solution.
-//            BY DOWNLOADING THIS VERSION, YOU UNDERSTAND THAT BARv9 WILL NOT WORK
-// TODO: Line 72
-// alert("(BARv9) This version of BARv9 is not complete and will not work.");
-// -------------------------------------------------------------------------------------
-
 // The boolean below disables BARv9 when set to true. You'll receive a notification
 // when disabled, just in case you forget to change the setting back
 const disableAllScripts = false;
