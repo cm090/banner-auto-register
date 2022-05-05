@@ -11,7 +11,7 @@ const disableAllScripts = false;
 // In the array below, enter all of your CRNs separated by commas
 const classes = [0, 0, 0, 0];
 // Enter your registration PIN below. This information doesn't leave your device
-const pin = 000000;;
+const pin = 000000;
 // Fill out your registration time below. Set the third value to true only if your
 // registration begins after 11:59 AM
 const hour = 7; // Number between 0 and 11 (0 = 12 AM)
@@ -41,6 +41,7 @@ if (!disableAllScripts) {
         }
     } else if (url.includes('StudentRegistrationSsb/ssb/term/termSelection')) {
         console.log("BARv9 > Found PIN page, requesting user action");
+        injectStyles('body > div.notification-center-shim {display:none;}');
         document.querySelector("#input_alt_pin").value = pin;
         if (document.querySelector(".select2-chosen").textContent.includes("Select a term...")) {
             var ev = new MouseEvent('mousedown', {
@@ -86,8 +87,9 @@ function timeTrack() {
     var timeUntil = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour + timeDiff, minute, 0, 0) - now;
     console.log(timeUntil);
     if (timeUntil < 0) {
-        console.log('registration time, loading the next page...');
+        console.log('BARv9 > Registration time, loading the next page');
         document.querySelector("#term-go").click();
+        clearErrors();
     }
     else if (timeUntil > 10000) {
         console.log("BARv9 > Found waiting page, refreshing in less than 10 seconds");
@@ -104,6 +106,7 @@ function timeTrack() {
 
 function clearErrors() {
     try {
+        document.querySelector("body > div.notification-center-shim").style.display = 'none';
         if (document.querySelector("#notification-center > div > ul.error-container > li:nth-child(1) > div.notification-item-prompts > button") !== null) {
             document.querySelector("#notification-center > div > ul.error-container > li:nth-child(1) > div.notification-item-prompts > button").click();
             document.querySelector("#notification-center > a > div > span").click();
@@ -130,6 +133,12 @@ function cookieCheck(search) {
         }
     }
     return false;
+}
+
+function injectStyles(rule) {
+    var div = $("<div />", {
+        html: '&shy;<style>' + rule + '</style>'
+    }).appendTo("body");
 }
 
 // -------------------------------------------------------------------------------------
