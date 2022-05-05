@@ -29,7 +29,7 @@ If you need help, check out this video (coming soon)
 3. Press the plus button on the screen and enter the domain of your Banner site in the popup box (get rid of https:// before the domain and everything after the .edu/.org/etc extension)
 4. In the large textbox on the right, paste in the below code
    - If on Banner 8, use <a href="https://github.com/cm090/banner-auto-register/blob/main/BARv8.js" target="_blank">BARv8.js</a>
-   - If on Banner 9, use <a href="https://github.com/cm090/banner-auto-register/blob/main/BARv9.js" target="_blank">BARv9.js</a> (available for download, work in progress)
+   - If on Banner 9, use <a href="https://github.com/cm090/banner-auto-register/blob/main/BARv9.js" target="_blank">BARv9.js</a>
 5. Make changes to the top of the code based on the green comments
    - The first thing to add is your list of CRNs in the array. Do not delete the empty slots or else the code won't work. If you don't have 10 CRNs, put two single quotes in the empty spaces. When you're finished, it should look like this: `[1234, 5678, 9012, 3456, '', '', '', '', '' ,'']`
    - Next, fill in your PIN. If you don't need one, set the value to `''`
@@ -44,7 +44,7 @@ body > div.notification-center-shim {display:none;}
 This will allow you to keep pressing the "Continue" button on the waiting screen without having to dismiss the error messages.
 
 ## Notes and Recommendations
-- Your success with BAR may vary. BARv8 was tested in early 2022 with a high success rate. BARv9 is currently being tested
+- Your success with BAR may vary. BARv8 was tested in early 2022 with a high success rate. BARv9 has worked sucessfully in early tests
 - Make sure BAR is working **before** registration. Do this by visiting the PIN entry page. You won't be able to register, but BAR is working if the page randomly refreshes while you're on it
 - You can check the developer console for messages or errors. Press the keys `Ctrl` + `Shift` + `I` or `F12` to open the tool and click on the console tab. Messages from BAR should appear when the program is running
 - Have a backup method just in case something goes wrong. I recommend using <a href="https://autohotkey.com" target="_blank">AutoHotKey</a> for Banner 8, or the built-in plan creator for Banner 9
