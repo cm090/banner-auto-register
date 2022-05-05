@@ -8,8 +8,9 @@
 // The boolean below disables BARv9 when set to true. You'll receive a notification
 // when disabled, just in case you forget to change the setting back
 const disableAllScripts = false;
-// In the array below, enter all of your CRNs separated by commas
-const classes = [0, 0, 0, 0];
+// In the array below, enter all of your CRNs separated by commas. Add more elements
+// as needed
+const classes = [0000, 0000, 0000, 0000];
 // Enter your registration PIN below. This information doesn't leave your device
 const pin = 000000;
 // Fill out your registration time below. Set the third value to true only if your
@@ -68,6 +69,9 @@ if (!disableAllScripts) {
             document.querySelector("#addCRNbutton").click();
             document.cookie = 'completedRegistration=true';
             document.querySelector("#saveButton").click();
+            respondToVisibility(document.querySelector("#saveButton"), click => {
+                document.querySelector("#saveButton").click();
+            });
         } else {
             console.log("BARv9 > Registration process complete");
             alert("(BARv9) Thanks for using BARv9! Learn more at https://link.canon.click/bar-tool");
@@ -77,6 +81,7 @@ if (!disableAllScripts) {
     alert("(BARv9) We've detected you're on a registration page but have disabled BARv9. If you would like to enable the tool, set the disableAllScripts variable to false in the code.");
 }
 
+// Checks the time and refreshes the page until the time is <= registration time
 function timeTrack() {
     clearErrors();
     var timeDiff = 0;
@@ -104,6 +109,7 @@ function timeTrack() {
     }, timeUntil);
 }
 
+// Clears any errors that may appear on the page
 function clearErrors() {
     try {
         document.querySelector("body > div.notification-center-shim").style.display = 'none';
@@ -115,11 +121,13 @@ function clearErrors() {
     } catch (e) { }
 }
 
+// Refreshes the page and calls the timeTrack function again
 function refresh() {
     document.querySelector("#term-go").click();
     timeTrack();
 }
 
+// Checks if the cookie search exists
 function cookieCheck(search) {
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
@@ -135,10 +143,24 @@ function cookieCheck(search) {
     return false;
 }
 
+// Injects CSS into the page
 function injectStyles(rule) {
     var div = $("<div />", {
         html: '&shy;<style>' + rule + '</style>'
     }).appendTo("body");
+}
+
+// Ddetects when an element is visible on the screen and perfoms callback when true
+function respondToVisibility(element, callback) {
+    var options = {
+        root: document.documentElement,
+    };
+    var observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            callback(entry.intersectionRatio > 0);
+        });
+    }, options);
+    observer.observe(element);
 }
 
 // -------------------------------------------------------------------------------------
