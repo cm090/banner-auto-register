@@ -27,14 +27,15 @@ If you need help, check out this video (coming soon)
 1. Download the <a href="https://chrome.google.com/webstore/detail/injector/bfdonckegflhbiamlmidciapolfccmmb" target="_blank">Injector plugin for Chrome</a>
 2. Click on the extension icon
 3. Press the plus button on the screen and enter the domain of your Banner site in the popup box (get rid of https:// before the domain and everything after the .edu/.org/etc extension)
-4. In the large textbox on the right, paste in the below code
+   - Example: ~~https://~~ bannersite.school.edu ~~/currentPage~~
+5. In the large textbox on the right, paste in the below code
    - If on Banner 8, use <a href="https://github.com/cm090/banner-auto-register/blob/main/BARv8.js" target="_blank">BARv8.js</a>
    - If on Banner 9, use <a href="https://github.com/cm090/banner-auto-register/blob/main/BARv9.js" target="_blank">BARv9.js</a>
-5. Make changes to the top of the code based on the green comments
+6. Make changes to the top of the code based on the green comments
    - The first thing to add is your list of CRNs in the array. Do not delete the empty slots or else the code won't work. If you don't have 10 CRNs, put two single quotes in the empty spaces. When you're finished, it should look like this: `[1234, 5678, 9012, 3456, '', '', '', '', '' ,'']`
    - Next, fill in your PIN. If you don't need one, set the value to `''`
    - Finally, add your registration time. The code will ask for the hour and minute registration opens. Note that 0 hours represents 12:00. Below that, enter `TRUE` if your time is after 11:59 AM, otherwise don't change this value
-6. Click the green save button and you're finished. 3-5 minutes before your registration time, visit the PIN entry page and BAR will do the rest
+7. Click the green save button and you're finished. 3-5 minutes before your registration time, visit the PIN entry page and BAR will do the rest
 
 ## Alternative
 If you don't want to use BARv9, follow the above steps to install the Injector plugin and add your domain. Click on the dropdown that says JavaScript and select CSS. Add the following code to the large textbox:
