@@ -150,7 +150,7 @@ function injectStyles(rule) {
     }).appendTo("body");
 }
 
-// Ddetects when an element is visible on the screen and perfoms callback when true
+// Detects when an element is visible on the screen and perfoms callback when true
 function respondToVisibility(element, callback) {
     var options = {
         root: document.documentElement,
