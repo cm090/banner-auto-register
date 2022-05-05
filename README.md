@@ -29,7 +29,7 @@ If you need help, check out this video (coming soon)
 3. Press the plus button on the screen and enter the domain of your Banner site in the popup box (get rid of https:// before the domain and everything after the .edu/.org/etc extension)
 4. In the large textbox on the right, paste in the below code
    - If on Banner 8, use <a href="https://github.com/cm090/banner-auto-register/blob/main/BARv8.js" target="_blank">BARv8.js</a>
-   - If on Banner 9, use <a href="https://github.com/cm090/banner-auto-register/blob/main/BARv9.js" target="_blank">BARv9.js</a> (work in progress)
+   - If on Banner 9, use <a href="https://github.com/cm090/banner-auto-register/blob/main/BARv9.js" target="_blank">BARv9.js</a> (available for download, work in progress)
 5. Make changes to the top of the code based on the green comments
    - The first thing to add is your list of CRNs in the array. Do not delete the empty slots or else the code won't work. If you don't have 10 CRNs, put two single quotes in the empty spaces. When you're finished, it should look like this: `[1234, 5678, 9012, 3456, '', '', '', '', '' ,'']`
    - Next, fill in your PIN. If you don't need one, set the value to `''`
