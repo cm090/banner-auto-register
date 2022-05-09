@@ -10,9 +10,9 @@
 const disableAllScripts = false;
 // In the array below, enter all of your CRNs separated by commas. Add more elements
 // as needed
-const classes = [0000, 0000, 0000, 0000];
+const classes = [0, 0, 0, 0];
 // Enter your registration PIN below. This information doesn't leave your device
-const pin = 000000;
+const pin = 0;
 // Fill out your registration time below. Set the third value to true only if your
 // registration begins after 11:59 AM
 const hour = 7; // Number between 0 and 11 (0 = 12 AM)
@@ -69,9 +69,6 @@ if (!disableAllScripts) {
             document.querySelector("#addCRNbutton").click();
             document.cookie = 'completedRegistration=true';
             document.querySelector("#saveButton").click();
-            respondToVisibility(document.querySelector("#saveButton"), click => {
-                document.querySelector("#saveButton").click();
-            });
         } else {
             console.log("BARv9 > Registration process complete");
             alert("(BARv9) Thanks for using BARv9! Learn more at https://link.canon.click/bar-tool");
@@ -118,7 +115,9 @@ function clearErrors() {
             document.querySelector("#notification-center > a > div > span").click();
             document.querySelector("#notification-center > div > ul.error-container > li > div.notification-item-prompts > button").click();
         }
-    } catch (e) { }
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 // Refreshes the page and calls the timeTrack function again
