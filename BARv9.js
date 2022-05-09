@@ -149,19 +149,6 @@ function injectStyles(rule) {
     }).appendTo("body");
 }
 
-// Detects when an element is visible on the screen and perfoms callback when true
-function respondToVisibility(element, callback) {
-    var options = {
-        root: document.documentElement,
-    };
-    var observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            callback(entry.intersectionRatio > 0);
-        });
-    }, options);
-    observer.observe(element);
-}
-
 // -------------------------------------------------------------------------------------
 // IMPORTANT: Scroll to the top of this code to fill out your CRNs and PIN, otherwise
 //            this program won't work
