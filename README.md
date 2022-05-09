@@ -3,6 +3,7 @@
 
 ### Automatically register for your next semester's classes with this tool!
 <a href="https://github.com/cm090/banner-auto-register/actions/workflows/codeql-analysis.yml">![codeql workflow](https://github.com/cm090/banner-auto-register/actions/workflows/codeql-analysis.yml/badge.svg)</a>
+[![CodeFactor](https://www.codefactor.io/repository/github/cm090/banner-auto-register/badge)](https://www.codefactor.io/repository/github/cm090/banner-auto-register)
 
 BAR accomplishes a few tasks so human error doesn't slow down the registration process:
 - Takes in a PIN that is autofilled when prompted by the site
