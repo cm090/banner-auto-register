@@ -1,3 +1,7 @@
+## Check out my other projects!
+<a href="https://about.canon.click" target="_blank">Portfolio</a><br>
+<a href="https://about.rhit.cf" target="_blank">RHIoT Media</a> (The Elephant's Onion & RHIThole)
+
 # Banner Auto Register (BAR)
 #### Disclaimer: BAR created solely for testing purposes. If you are prohibited from using software to automatically register for courses, do not use this program. BAR is not associated with Ellucian Banner. I am not responsible for anything that goes wrong.
 
