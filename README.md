@@ -1,11 +1,7 @@
-## Check out my other projects!
-<a href="https://about.canon.click" target="_blank">Portfolio</a><br>
-<a href="https://about.rhit.cf" target="_blank">RHIoT Media</a> (The Elephant's Onion & RHIThole)
-
 # Banner Auto Register (BAR)
 #### Disclaimer: BAR created solely for testing purposes. If you are prohibited from using software to automatically register for courses, do not use this program. BAR is not associated with Ellucian Banner. I am not responsible for anything that goes wrong.
 
-### Automatically register for your next semester's classes with this tool!
+### Automatically register for next semester's classes with this tool!
 <a href="https://github.com/cm090/banner-auto-register/actions/workflows/codeql-analysis.yml">![codeql workflow](https://github.com/cm090/banner-auto-register/actions/workflows/codeql-analysis.yml/badge.svg)</a>
 [![CodeFactor](https://www.codefactor.io/repository/github/cm090/banner-auto-register/badge)](https://www.codefactor.io/repository/github/cm090/banner-auto-register)
 
