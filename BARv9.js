@@ -10,9 +10,9 @@
 const disableAllScripts = false;
 // In the array below, enter all of your CRNs separated by commas. Add more elements
 // as needed
-const classes = [0, 0, 0, 0];
+const classes = [1111, 2222, 3333, 4444];
 // Enter your registration PIN below. This information doesn't leave your device
-const pin = 0;
+const pin = 123456;
 // Fill out your registration time below. Set the third value to true only if your
 // registration begins after 11:59 AM
 const hour = 7; // Number between 0 and 11 (0 = 12 AM)
@@ -26,95 +26,15 @@ const isPM = false; // true or false
 //            By continuing, you assume all liability for anything that goes wrong
 // -------------------------------------------------------------------------------------
 
-if (hour < 0 || hour > 11 || minute < 0 || minute > 59) {
-  alert(
-    "(BARv9) The time information you entered is incorrect. This error message wil disappear when the issue is resolved."
-  );
-}
-var url = window.location.pathname;
-console.log("BARv9 > Got current url as " + url);
-if (!disableAllScripts) {
-  if (
-    url.includes("StudentRegistrationSsb/ssb/registration") &&
-    !cookieCheck("completedRegistration")
-  ) {
-    console.log("BARv9 > Found registration homepage, requesting user action");
-    if (cookieCheck("completedRegistration")) {
-      var action = confirm(
-        "(BARv9) The registration cookie has been detected on your device, and this tool will not work unless it is removed. Click 'OK' to learn how to remove the cookie."
-      );
-      if (action) {
-        window.open("https://link.canon.click/bar-tool");
-      }
-    } else {
-      alert(
-        '(BARv9) We have detected you are on the main registration page. Click on "Register for Classes" to start BARv9.'
-      );
-    }
-  } else if (url.includes("StudentRegistrationSsb/ssb/term/termSelection")) {
-    console.log("BARv9 > Found PIN page, requesting user action");
-    injectStyles("body > div.notification-center-shim {display:none;}");
-    document.querySelector("#input_alt_pin").value = pin;
-    if (
-      document
-        .querySelector(".select2-chosen")
-        .textContent.includes("Select a term...")
-    ) {
-      var ev = new MouseEvent("mousedown", {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-      });
-      document.querySelector("#s2id_txt_term > a").dispatchEvent(ev);
-      alert(
-        "(BARv9) Please select your registration term from the dropdown menu and press Continue when finished."
-      );
-    } else {
-      console.log(
-        "BARv9 > Found term " +
-          document.querySelector("#select2-chosen-1").textContent +
-          ", autofilling PIN"
-      );
-      document.querySelector("#term-go").click();
-    }
-    timeTrack();
-  } else if (
-    url.includes(
-      "StudentRegistrationSsb/ssb/classRegistration/classRegistration"
-    )
-  ) {
-    if (!cookieCheck("completedRegistration")) {
-      console.log("BARv9 > Found registration page, autofilling courses");
-      document.querySelector("#enterCRNs-tab").click();
-      for (var i = 1; i < classes.length + 1; i++) {
-        document.querySelector("#addAnotherCRN").click();
-        document.querySelector("#txt_crn" + i).value = classes[i - 1];
-      }
-      document.querySelector("#addCRNbutton").click();
-      document.cookie = "completedRegistration=true";
-      document.querySelector("#saveButton").click();
-    } else {
-      console.log("BARv9 > Registration process complete");
-      alert(
-        "(BARv9) Thanks for using BARv9! Learn more at https://link.canon.click/bar-tool"
-      );
-    }
-  }
-} else if (url.includes("StudentRegistrationSsb")) {
-  alert(
-    "(BARv9) We've detected you're on a registration page but have disabled BARv9. If you would like to enable the tool, set the disableAllScripts variable to false in the code."
-  );
-}
-
 // Checks the time and refreshes the page until the time is <= registration time
-function timeTrack() {
+const timeTrack = () => {
   clearErrors();
-  var timeDiff = 0;
+  let timeDiff = 0;
   if (isPM) {
     timeDiff = 12;
   }
-  var now = new Date();
-  var timeUntil =
+  let now = new Date();
+  let timeUntil =
     new Date(
       now.getFullYear(),
       now.getMonth(),
@@ -142,10 +62,10 @@ function timeTrack() {
       refresh();
       clearErrors();
     }, timeUntil);
-}
+};
 
 // Clears any errors that may appear on the page
-function clearErrors() {
+const clearErrors = () => {
   try {
     document.querySelector(
       "body > div.notification-center-shim"
@@ -170,16 +90,16 @@ function clearErrors() {
   } catch (e) {
     console.log(e);
   }
-}
+};
 
 // Refreshes the page and calls the timeTrack function again
-function refresh() {
+const refresh = () => {
   document.querySelector("#term-go").click();
   timeTrack();
-}
+};
 
 // Checks if the cookie search exists
-function cookieCheck(search) {
+const cookieCheck = (search) => {
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(";");
   for (let i = 0; i < ca.length; i++) {
@@ -192,13 +112,87 @@ function cookieCheck(search) {
     }
   }
   return false;
-}
+};
 
 // Injects CSS into the page
-function injectStyles(rule) {
-  var div = $("<div />", {
+const injectStyles = (rule) => {
+  let div = $("<div />", {
     html: "&shy;<style>" + rule + "</style>",
   }).appendTo("body");
+};
+
+if (hour < 0 || hour > 11 || minute < 0 || minute > 59) {
+  alert(
+    "(BARv9) The time information you entered is incorrect. This error message wil disappear when the issue is resolved."
+  );
+}
+let url = window.location.pathname;
+console.log("BARv9 > Got current url as " + url);
+if (!disableAllScripts) {
+  if (
+    url.includes("StudentRegistrationSsb/ssb/registration") &&
+    !cookieCheck("completedRegistration")
+  ) {
+    console.log("BARv9 > Found registration homepage, requesting user action");
+    if (cookieCheck("completedRegistration")) {
+      let action = confirm(
+        "(BARv9) The registration cookie has been detected on your device, and this tool will not work unless it is removed. Click 'OK' to learn how to remove the cookie."
+      );
+      if (action) {
+        window.open("https://link.canon.click/bar-tool");
+      }
+    } else {
+      $("#brandingDiv")[0].innerHTML +=
+        '<p style="padding-left: 10px; display: flex;">BARv9: Ready for registration page</p>';
+    }
+  } else if (url.includes("StudentRegistrationSsb/ssb/term/termSelection")) {
+    console.log("BARv9 > Found PIN page, requesting user action");
+    injectStyles("body > div.notification-center-shim {display:none;}");
+    document.querySelector("#input_alt_pin").value = pin;
+    if (
+      document
+        .querySelector(".select2-chosen")
+        .textContent.includes("Select a term...")
+    ) {
+      let ev = new MouseEvent("mousedown", {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
+      document.querySelector("#s2id_txt_term > a").dispatchEvent(ev);
+      $("#brandingDiv")[0].innerHTML +=
+        '<p style="padding-left: 10px; display: flex;">BARv9: Select registration term and click continue</p>';
+    } else {
+      console.log(
+        "BARv9 > Found term " +
+        document.querySelector("#select2-chosen-1").textContent +
+        ", autofilling PIN"
+      );
+      document.querySelector("#term-go").click();
+    }
+    timeTrack();
+  } else if (
+    url.includes(
+      "StudentRegistrationSsb/ssb/classRegistration/classRegistration"
+    )
+  ) {
+    if (!cookieCheck("completedRegistration")) {
+      console.log("BARv9 > Found registration page, autofilling courses");
+      document.querySelector("#enterCRNs-tab").click();
+      for (let i = 1; i < classes.length + 1; i++) {
+        document.querySelector("#addAnotherCRN").click();
+        document.querySelector("#txt_crn" + i).value = classes[i - 1];
+      }
+      document.querySelector("#addCRNbutton").click();
+      document.cookie = "completedRegistration=true";
+      document.querySelector("#saveButton").click();
+    } else {
+      console.log("BARv9 > Registration process complete");
+    }
+  }
+} else if (url.includes("StudentRegistrationSsb")) {
+  $("#brandingDiv")[0].innerHTML +=
+    '<p style="padding-left: 10px; display: flex;">BARv9: Disabled</p>';
 }
 
 // -------------------------------------------------------------------------------------
